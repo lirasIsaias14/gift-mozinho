@@ -22,12 +22,26 @@
 }
 
 .card .img img{
-    height: 250px;
-    width: 250px;
+    height: 200px;
+    width: 200px;
     border-radius: 50%;
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
     object-fit: cover;
+    animation: rotate 20s linear infinite;
+    animation-play-state: paused;
+}
 
+.card .img img.playing{
+    animation-play-state: running;
+}
+
+@keyframes rotate{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
 }
 
 .card .hope{
@@ -36,7 +50,16 @@
     height: 25px;
     border-radius: 50%;
     background: rgb(0, 0, 0);
+    z-index: 5;
 
+}
+
+.card canvas{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: 0;
 }
 
 .card .details{
@@ -68,6 +91,13 @@
     color: #bbb
 }
 
+.timer{
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #c1c1c1;
+}
+
 .card .controls{
     width: 100%;
     margin-top: 20px;
@@ -79,7 +109,7 @@
 
 .card .controls #prev,
 .card .controls #next{
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     user-select: none;
 }
 
@@ -87,7 +117,6 @@
     width: 3.20rem;
     height: 3.20rem;
     border-radius: 50%;
-    background: linear-gradient(#fff 0%, #cecaca 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,12 +128,11 @@
     position: absolute;
     width: 2.5rem;
     height: 2.5rem;
-    border-radius: inherit;
-    background: linear-gradient(#8dadff, #6e72a3 100%);
+    border-radius: inherit;;
 }
 
 .card .controls .play i{
-    font-size: 2rem;
+    font-size: 3.5rem;
     background: #fff;
     background-clip: text;
     -webkit-background-clip: text;
@@ -117,7 +145,7 @@
     height:50px;
     background: #333;
     position: absolute;
-    bottom: -10%;
+    bottom: -50%;
     left: 0;
     border-radius: 10px;
     border: 1px solid rgba(255,255,255,0.1);
@@ -125,8 +153,9 @@
     align-items: center;
     justify-content: space-between;
     padding: 25px;
+    gap: 10px;
     z-index: 5;
-    transition: bottom 0.2s linear;
+    transition: bottom 0.3s linear;
 }
 
 .card .controls .volume.show{
